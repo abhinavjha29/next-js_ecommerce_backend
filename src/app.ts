@@ -1,0 +1,33 @@
+import express, { Application, Request, Response } from "express";
+import connectDb from "./util/dbconnection";
+const cors = require("cors");
+import cookieParser from "cookie-parser";
+
+const cartRouter = require("./router/CartRouter");
+const userRouter = require("./router/UserRouter");
+const productRouter = require("./router/ProductRouter");
+const invoiceRouter = require("./router/InvoiceRouter");
+const app: Application = express();
+const PORT = 3004;
+app.use(express.json());
+const corsOptions = {
+  origin: true,
+  credentials: true,
+};
+app.use(cors(corsOptions));
+
+app.use(cookieParser());
+
+app.use("/cart", cartRouter);
+app.use("/product", productRouter);
+app.use("/user", userRouter);
+app.use("/invoice", invoiceRouter);
+app.listen(PORT, async () => {
+  try {
+    await connectDb();
+    console.log("Connected to MongoDB");
+    console.log("Connected to port 5000");
+  } catch (err) {
+    console.error("Error connecting to MongoDB:", err);
+  }
+});
