@@ -11,7 +11,12 @@ const app: Application = express();
 const PORT = 3004;
 app.use(express.json());
 
-app.use(cors({ origin: "*" }));
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Allow requests from this origin
+    credentials: true, // Allow sending cookies and authentication headers
+  })
+);
 
 app.use(cookieParser());
 
