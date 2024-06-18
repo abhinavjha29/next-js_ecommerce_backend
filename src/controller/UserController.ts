@@ -10,6 +10,7 @@ interface TokenPayload {
 const secretKey: string | undefined = process.env.JWT_SECRET_KEY;
 export const generateToken = async (id: string): Promise<string | void> => {
   const payload: TokenPayload = { userId: id };
+
   if (secretKey) return jwt.sign(payload, secretKey);
 };
 

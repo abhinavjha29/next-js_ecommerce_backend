@@ -16,7 +16,7 @@ export interface ICart extends Document {
   _id?: string;
   productId: string;
 }
-interface CartProduct {
+ interface CartProduct {
   _id?: mongoose.Types.ObjectId;
   quantity: {
     type: Number;

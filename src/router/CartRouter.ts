@@ -4,7 +4,7 @@ const express = require("express");
 const tokenAuthentication = require("../middlewere/authentication");
 const cartController = require("../controller/CartController");
 const router: Router = express.Router();
-console.log("error");
+
 router.get(
   "/getcartitem",
   tokenAuthentication.authenticate,

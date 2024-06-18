@@ -60,9 +60,11 @@ export const getProduct = async (
     };
 
     res.status(200).json({ products, paginationInfo });
+    // throw new Error("Error"); //for testing purpose
   } catch (error) {
     console.error("Error fetching products:", error);
     res.status(500).json({ message: "Internal server error" });
+    // res.status(403);
   }
 };
 const getSingleProduct = async (req: Request, res: Response): Promise<void> => {

@@ -25,8 +25,6 @@ app.use("/invoice", invoiceRouter);
 app.listen(PORT, async () => {
   try {
     await connectDb();
-    console.log("Connected to MongoDB");
-    console.log("Connected to port 5000");
   } catch (err) {
     console.error("Error connecting to MongoDB:", err);
   }

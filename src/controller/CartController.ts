@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
 import Cart, { ICart } from "../model/Cart";
 import { Response, Request } from "express";
-import { RunCommandCursor } from "mongodb";
-import { Console } from "console";
+
 interface AddCartResponse {
   message: string;
 }
