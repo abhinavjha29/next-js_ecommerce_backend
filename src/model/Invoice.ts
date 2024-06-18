@@ -1,15 +1,5 @@
 import { Schema, model, Document } from "mongoose";
-
-interface IInvoice extends Document {
-  email: string;
-  products: {
-    productId: string;
-    title: string;
-    price: number;
-    quantity: number;
-  }[];
-  status: "pending" | "fulfilled" | "rejected";
-}
+import { IInvoice } from "../types";
 
 const invoiceSchema = new Schema<IInvoice>(
   {

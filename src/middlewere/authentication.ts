@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 require("dotenv").config();
-import User, { IUser } from "../model/User";
+import User from "../model/user";
+import { IUser } from "../types";
 declare global {
   namespace Express {
     interface Request {

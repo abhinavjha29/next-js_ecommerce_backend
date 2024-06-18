@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import User, { IUser } from "../model/User";
+import User from "../model/user";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { IUser } from "../types";
 require("dotenv").config();
 interface TokenPayload {
   userId: string;
@@ -24,7 +25,7 @@ const signup = async (req: Request, res: Response): Promise<void> => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user: IUser = new User({ name, email, password: hashedPassword });
+    const user = new User({ name, email, password: hashedPassword });
     const response = await user.save();
     if (response) {
       const id: string = response._id;

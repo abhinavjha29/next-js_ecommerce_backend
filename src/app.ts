@@ -8,15 +8,15 @@ const userRouter = require("./router/UserRouter");
 const productRouter = require("./router/ProductRouter");
 const invoiceRouter = require("./router/InvoiceRouter");
 const app: Application = express();
-const PORT = 3004;
+const PORT = process.env.PORT;
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: "http://localhost:3000", // Allow requests from this origin
-    credentials: true, // Allow sending cookies and authentication headers
-  })
-);
+const corsOptions = {
+  origin: "http://localhost:3000", // Allow requests from this origin
+  credentials: true, // Allow sending cookies and authentication headers
+};
+
+app.use(cors(corsOptions));
 
 app.use(cookieParser());
 
@@ -24,11 +24,16 @@ app.use("/cart", cartRouter);
 app.use("/product", productRouter);
 app.use("/user", userRouter);
 app.use("/invoice", invoiceRouter);
-app.listen(PORT, async () => {
-  try {
-    await connectDb();
-  } catch (err) {
+
+connectDb()
+  .then(() => {
+    console.log("Connected to MongoDB");
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
     console.error("Error connecting to MongoDB:", err);
-  }
-});
+    process.exit(1); // Exit the process if failed to connect to MongoDB
+  });
 module.exports = app;

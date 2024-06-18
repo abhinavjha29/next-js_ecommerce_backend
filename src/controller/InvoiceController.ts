@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Invoice from "../model/Invoice";
-import Cart from "../model/Cart";
+import Cart from "../model/cart";
 import mongoose from "mongoose";
 
 const generateInvoice = async (req: Request, res: Response) => {

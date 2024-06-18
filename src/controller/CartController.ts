@@ -1,10 +1,7 @@
-import mongoose from "mongoose";
-import Cart, { ICart } from "../model/Cart";
+import Cart from "../model/cart";
 import { Response, Request } from "express";
+import { ICart } from "../types";
 
-interface AddCartResponse {
-  message: string;
-}
 const getCartProducts = async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = req.user?._id;
