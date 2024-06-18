@@ -10,11 +10,8 @@ const invoiceRouter = require("./router/InvoiceRouter");
 const app: Application = express();
 const PORT = 3004;
 app.use(express.json());
-const corsOptions = {
-  origin: true,
-  credentials: true,
-};
-app.use(cors(corsOptions));
+
+app.use(cors({ origin: "*" }));
 
 app.use(cookieParser());
 
@@ -29,3 +26,4 @@ app.listen(PORT, async () => {
     console.error("Error connecting to MongoDB:", err);
   }
 });
+module.exports = app;
